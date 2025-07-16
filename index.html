@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple News Portal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container justify-content-center">
+            <div class="navbar-nav">
+                <button class="btn btn-outline-light mx-2" onclick="showNews('national')">National News</button>
+                <button class="btn btn-outline-light mx-2" onclick="showNews('local')">Local News</button>
+                <button class="btn btn-outline-light mx-2" onclick="showNews('international')">International News</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- News Content -->
+    <div class="container mt-4" id="newsContainer">
+        <!-- News will be injected here -->
+    </div>
+
+    <script>
+        const newsData = {
+            national: [
+                {
+                    title: "Government Announces New Policies",
+                    image: "https://via.placeholder.com/600x300.png?text=National+News+1",
+                    content: "The government has announced new policies focusing on infrastructure and education to enhance national growth."
+                },
+                {
+                    title: "National Election Dates Declared",
+                    image: "https://via.placeholder.com/600x300.png?text=National+News+2",
+                    content: "The Election Commission has declared the dates for upcoming elections, encouraging citizens to participate actively."
+                }
+            ],
+            local: [
+                {
+                    title: "Local Market Renovation Completed",
+                    image: "https://via.placeholder.com/600x300.png?text=Local+News+1",
+                    content: "The renovation of the city's oldest market has been completed, aiming to boost local businesses and tourism."
+                },
+                {
+                    title: "Community Clean-Up Drive Held",
+                    image: "https://via.placeholder.com/600x300.png?text=Local+News+2",
+                    content: "Volunteers conducted a clean-up drive in the local park to maintain environmental cleanliness."
+                }
+            ],
+            international: [
+                {
+                    title: "Global Leaders Meet for Climate Summit",
+                    image: "https://via.placeholder.com/600x300.png?text=International+News+1",
+                    content: "World leaders have gathered to discuss climate change strategies to reduce carbon emissions and global warming."
+                },
+                {
+                    title: "New Trade Agreement Signed",
+                    image: "https://via.placeholder.com/600x300.png?text=International+News+2",
+                    content: "Countries have signed a new trade agreement to enhance economic cooperation and reduce trade barriers."
+                }
+            ]
+        };
+
+        function showNews(category) {
+            const container = document.getElementById('newsContainer');
+            container.innerHTML = '';
+            newsData[category].forEach(news => {
+                const newsCard = document.createElement('div');
+                newsCard.className = 'card mb-4';
+                newsCard.innerHTML = `
+                    <img src="${news.image}" class="card-img-top" alt="${news.title}">
+                    <div class="card-body">
+                        <h5 class="card-title">${news.title}</h5>
+                        <p class="card-text">${news.content}</p>
+                    </div>
+                `;
+                container.appendChild(newsCard);
+            });
+        }
+
+        // Show National News by default on load
+        showNews('national');
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
